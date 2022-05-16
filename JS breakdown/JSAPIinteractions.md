@@ -159,7 +159,7 @@ app.get('/', (req, res) => {
 }) 
 
 //Export this
-module.export = app
+module.exports = app
 ```
 
 
@@ -334,6 +334,8 @@ app.post('/cats', (req, res)=>{
 	// you might want to push this in the array of data stored locally(?)
 	// also add id from array.length +1
 
+	data_array.push(newCatto)
+
 	res.status(201).send(newCatto)  // -> send response code and data
 	//
 })
@@ -444,12 +446,57 @@ web: npm start
 Means if run from web run npm start. Npm start is just 'node index.js'
 
 
+### Deploy in CLI
+
+- heroku login 
+- follow what the website says for setup
+	+ heroku git:remote -a dream-team-server (connects to their servers)
+	+ heroku apps (shows all the working APIs)
+
+- Now NEED to push IN MAIN!!! (wont work otherwise)
+	+ git push heroku main
+	!!!!! every time you change heroku somehow run this command!! Almost like heroku automatically opens a 'heroku' branch itself
+
+YAY server up and running	
+
+*Test server is running*  
+heroku ps:scale web=1
+
+*Open server from CLI*
+heroku open
+
+*See logs of activity*
+heroku logs --tail
 
 
 
 
 
 
+## Post data sample
+// Example POST method implementation:
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
+postData('https://example.com/answer', { answer: 42 })
+  .then(data => {
+    console.log(data); // JSON data parsed by `data.json()` call
+  });
 
 
 
