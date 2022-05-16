@@ -40,6 +40,8 @@ If document.addEventListener(...) it refers to all document
 - <document>.createElement('type') -> create new element that can be appended to a parent element !!-> add onclick event boi! -> document.createElement(..)
 - <var>.appendChild(element) -> append element in other element
 - <var>.append(element) -> appends to section too but not sure if more for alerts and that
+- <newname>.createTextNode -> creates text section to append to paragraphs when it's required adding some other things in between (ex need to add an anchor link so you sandwich it in between two textNodes)
+
 - <var>.remove() -> removes element
 - <var>.disabled = true
 
