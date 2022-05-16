@@ -5,41 +5,41 @@ Not the best but works
 ## HTML semantic
 elements (semantic elements have defined content while non-semantic contain semantic elements (ex div-span))
 
-- <article> -> section of document
+- `<article>` -> section of document
 
-- <aside> -> defines content separate from the content it is placed into (like sidebar)
+- `<aside>` -> defines content separate from the content it is placed into (like sidebar)
 
-- <details> -> details user can view or hide
+- `<details>` -> details user can view or hide
 
-- <figcaption> -> figure contains img and figcaption tags
-<figure>
+- `<figcaption>` -> figure contains img and figcaption tags
+`<figure>`
 
-- <footer> -> contact/sitemap/copyright
+- `<footer>` -> contact/sitemap/copyright
 
-- <form> (?) -> aggregates form data -> action parameter redirects user to other page once form submitted
+- `<form>` (?) -> aggregates form data -> action parameter redirects user to other page once form submitted
 
-- <header> -> introductory content/nav links
+- `<header>` -> introductory content/nav links
 
-- <main> -> specifies main content of the document
+- `<main>` -> specifies main content of the document
 
-- <mark> -> defines marked/highlighted text
+- `<mark>` -> defines marked/highlighted text
 
-- <nav> -> set of navigation links
+- `<nav>` -> set of navigation links
 
-- <section> -> defines section in document
+- `<section>` -> defines section in document
 
-- <summary> -> defines a visible heading for <details>
+- `<summary>` -> defines a visible heading for `<details>`
 
-- <time> -> defines date/time
+- `<time>` -> defines date/time
 
 ---
 
 ## HTML non-semantic
-- <section>
+- `<section>`
 
-- <div>
+- `<div>`
 
-- <span>
+- `<span>`
 
 
 ---
@@ -212,7 +212,7 @@ Preferred when solving layout issues
 	+ grid - generates a block-level grid
 	+ inline-grid - generates inline-level grid
 
-- grid-template-columns: <track-size (any measure)> <line-name (optional)>
+- grid-template-columns: `<track-size (any measure)> <line-name (optional)>`
  + grid-template-rows: 
 	* wouldn’t use the line name. Basically just type the size of each column for how many columns you want -> can do repeat(3, 30%)
 
@@ -222,13 +222,13 @@ Preferred when solving layout issues
 - grid-template:
 	+ unites the previous 3 functions into one
 
-- column-gap: <line-size>
+- column-gap: `<line-size>`
  + row-gap:
  + grid-column-gap:
  + grid-row-gap:
 	* Used to specify the size of the grid lines.
 
-- gap: <row> <column>
+- gap: `<row> <column>`
 	+ shorthand for row/column-gap
 
 - justify-items:
@@ -266,10 +266,10 @@ Preferred when solving layout issues
 
 Place child in the grid
 - .item {
-  + grid-column-start: <number> | <name> | span <number> | span <name> | auto;
-  + grid-column-end: <number> | <name> | span <number> | span <name> | auto;
-  + grid-row-start: <number> | <name> | span <number> | span <name> | auto;
-  + grid-row-end: <number> | <name> | span <number> | span <name> | auto;
+  + grid-column-start: `<number> | <name> | span <number> | span <name> | auto;`
+  + grid-column-end: `<number> | <name> | span <number> | span <name> | auto;`
+  + grid-row-start: `<number> | <name> | span <number> | span <name> | auto;`
+  + grid-row-end: `<number> | <name> | span <number> | span <name> | auto;`
 }
 -> start is where the item starts / end obvs ends
 Usage
@@ -280,11 +280,11 @@ Usage
 		 grid-row-end: 3;
 		}
 
-- grid-column: <start>/<end> -> 3 / 2
+- grid-column: `<start>/<end>` -> 3 / 2
 	+ grid-row:
 	+ Shorthand for start+end
 
-- grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
+- grid-area: `<name> | <row-start> / <column-start> / <row-end> / <column-end>;`
 	+ Shorthand for previous settings
 
 - justify-self: start | end | center | stretch
@@ -343,9 +343,9 @@ Preferred when needing a one directional flow
 - align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch | start | end | baseline | first baseline | last baseline + ... safe | unsafe;
 	+ aligns the flex container lines when there is extra spaces in ross axis
 
-- gap: <row> <column>
-- row-gap: <n>
-- column-gap: <n>
+- gap: `<row> <column>`
+- row-gap: `<n>`
+- column-gap: `<n>`
 	+ controls the space between flex items
 
 
@@ -357,13 +357,13 @@ Preferred when needing a one directional flow
 	order:5;
 }
 
-- flex-grow: <n> (default 0)
+- flex-grow: `<n>` (default 0)
 	+ defines the ability of a flex item to grow if necessary. (dictates what amount of the available space inside the flex container the item should take up
 
-- flex-shrink: <n>
+- flex-shrink: `<n>`
 	+ defines the ability of a item to shrink
 
-- flex-basis: <n> | auto
+- flex-basis: `<n>` | auto
 	+ defines the default size of an element before the remaining space is distributed
 
 - flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
@@ -378,7 +378,7 @@ Preferred when needing a one directional flow
 # Bootstrap
 
 *Bootstrap link for head:*
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+`<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">`
 
 # Breakpoints
 Breakpoints are customisable widths that determine how the reponsive layout behaves across devices. DESIGNED TO CONTAIN MULTIPLES OF 12 

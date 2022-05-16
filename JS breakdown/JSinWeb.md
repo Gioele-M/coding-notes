@@ -3,7 +3,7 @@
 ## Link to HTML
 
 In html script:
-<script src="index.js"></script>
+`<script src="index.js"></script>`
 Either at end of body or in head with keyword defer
 
 
@@ -28,39 +28,40 @@ If document.addEventListener(...) it refers to all document
 
 ## Interact with HTML elements
 
-- <document>.querySelector('element/.class/#id') -> selects element matching request
-- <document>.querySelectorAll('xxx') -> selects all matching element and returns them in an NodeList. Need to cast the NodeList into array with Array.from()
+- `<document>`.querySelector('element/.class/#id') -> selects element matching request
+- `<document>`.querySelectorAll('xxx') -> selects all matching element and returns them in an NodeList. Need to cast the NodeList into array with Array.from()
 
-- <var>.innerHTML -> change content of var with string of choice, best if within tags ex <h1> ... </h1>
-- <var>.textContent -> retrieve/change text content of section
+- `<var>`.innerHTML -> change content of var with string of choice, best if within tags ex `<h1>` ... `</h1>`
+- `<var>`.textContent -> retrieve/change text content of section
 
-- <var>.setAttribute('key', 'parameters') -> set attribute to variable, key(example id-type-style) parameters(whatever is inside quotes)
-- <var>.removeAttribute('key') -> remove all attributes related to key
+- `<var>`.setAttribute('key', 'parameters') -> set attribute to variable, key(example id-type-style) parameters(whatever is inside quotes)
+- `<var>`.removeAttribute('key') -> remove all attributes related to key
 
-- <document>.createElement('type') -> create new element that can be appended to a parent element !!-> add onclick event boi! -> document.createElement(..)
-- <var>.appendChild(element) -> append element in other element
-- <var>.append(element) -> appends to section too but not sure if more for alerts and that
-- <newname>.createTextNode -> creates text section to append to paragraphs when it's required adding some other things in between (ex need to add an anchor link so you sandwich it in between two textNodes)
+- `<document>`.createElement('type') -> create new element that can be appended to a parent element !!-> add onclick event boi! -> document.createElement(..)
+- `<var>`.appendChild(element) -> append element in other element
+- `<var>`.append(element) -> appends to section too but not sure if more for alerts and that
+- `<newname>`.createTextNode -> creates text section to append to paragraphs when it's required adding some other things in between (ex need to add an anchor link so you sandwich it in between two textNodes)
+	+ Node.cloneNode() -> if you need to re-use it (createTextNode makes only 1 reference)
 
-- <var>.remove() -> removes element
-- <var>.disabled = true
+- `<var>`.remove() -> removes element
+- `<var>`.disabled = true
 
 *Similar to event listener*
-- <var>.onclick = (e) => {function} -> when clicked execute function *very useful* when adding new elements
+- `<var>`.onclick = (e) => {function} -> when clicked execute function *very useful* when adding new elements
 
 
 ### Interact with CSS
 use style.property
 ex.
-<section>.style.color = 'red';
+`<section>`.style.color = 'red';
 
 otherwise classic one 
-<section>.setAttribute("style", "color: red; font-weight: bold")
+`<section>`.setAttribute("style", "color: red; font-weight: bold")
 
 ---
 
 # Events
-<section>.addEventListener("action", callback)
+`<section>`.addEventListener("action", callback)
 
 
 *Event types*
@@ -80,7 +81,7 @@ Many different ones but most important are
 - input -> input variable has to be targeted outside eventListener
 	+ input.value -> returns the value inputted by user
 
-- <forms>.preventDefault() -> stop default behaviour (example forms refresh/redirect pages, you can stop that)
+- `<forms>`.preventDefault() -> stop default behaviour (example forms refresh/redirect pages, you can stop that)
 
 - Using the e (event) from the callback we can taget parent element
 	+ e.target.parentElement
@@ -111,12 +112,12 @@ Many different ones but most important are
 
 *IN FORM*
 Add linking to other page once submitted / none -> refreshes page -> e.preventDefault() in event listener
-<form action="otherpage.html">
+`<form action="otherpage.html">`
 
 To stay on the same page block default behaviour
 
 *NEED A LABEL FOR INPUT with for="input-id"*
-<label for="input1">.... id="input1"<\label>
+`<label for="input1">`.... id="input1"`<\label>`
 
 
 
