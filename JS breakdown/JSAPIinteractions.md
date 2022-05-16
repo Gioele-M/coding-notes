@@ -54,7 +54,7 @@ fetch(`api.github.com/users/${input.value}`)
 ```
 
 ### Send data using fetch()
-
+!!! This requires an endpoint for posting!
 ```js
 const url = "https://jsonplaceholder.typicode.com/posts"
 const options = {
@@ -66,6 +66,44 @@ fetch(url, options)
   .catch(err => console.warn('Opa, something went wrong!', err))  
 ```
 As well as 'GET' (default) and 'POST', we may also find endpoints which respond to the verbs 'PUT', 'PATCH' or 'DELETE'. Generally, 'PUT' is for when we want to replace something, 'PATCH' is for when we want to update one part of something and 'DELETE' is self-explanatory.
+
+
+### Post data example
+```js
+// Example POST method implementation:
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+
+  // You could put all this in a variable instead (neater)
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
+postData('https://example.com/answer', { answer: 42 })
+  .then(data => {
+    console.log(data); // JSON data parsed by `data.json()` call
+  });
+```
+
+
+
+
+
+
+
+
 
 
 
@@ -112,6 +150,7 @@ async function getGitHubUserInfo(username){
 
 
 --- 
+
 # Express
 Express is a framework built on node 
 - Used to build APIs
@@ -144,6 +183,8 @@ Express is a framework built on node
 
 ### app.js
 app.js stores the declaration of server (express()) and the info/operations that are going to be composing the API. Exports app
+
+! In here remember to declare endpoints for get, post, patch, etc...
 
 ```js
 const express = require('express')
@@ -301,7 +342,92 @@ In practice we swap post and get in create, this bc show is red before new and w
 
 ---
 
-# Interaction with backend
+# Differences between put and patch
+- Put 
+	+ PUT is a method of modifying resource where the client sends data that updates the entire resource .
+	
+- Patch
+	+ PATCH is a method of modifying resources where the client sends partial data that is to be updated without modifying the entire data.
+
+
+
+## Make PUT request using fetch
+
+PUT is a method of modifying resources where the client sends data that updates the entire resource. PUT is similar to POST in that it can create resources, but it does so when there is a defined URL wherein PUT replaces the entire resource if it exists or creates new if it does not exist.
+For example, When you want to update the Candidate name and email, you have to send all the parameters of the Candidate including those not to be updated in the request body, otherwise, it will simply replace the entire resource with the name and email.
+
+```js
+fetch(API_URL,{
+	method: 'PUT',
+	headers:{
+	'Content-Type':'application/json'
+	},
+	body: JSON.stringify(DATA_WHICH_WE_WANT_TO_SEND)
+})
+```
+
+### In async fn
+
+```js
+const putData = async ( ) =>{
+   const response = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
+       method: 'PUT', 
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(myDataObject)
+   });
+```
+
+
+
+
+--- 
+
+
+# PATCH
+Unlike PUT Request, PATCH does partial update e.g. Fields that need to be updated by the client, only that field is updated without modifying the other field.
+
+## Patch request method
+```js
+let PatchRequest = () => {
+// sending PUT request with fetch API in javascript
+fetch("https://reqres.in/api/users/2", {
+	headers: {
+	Accept: "application/json",
+	"Content-Type": "application/json"
+	},
+	method: "PATCH",	
+
+	// Fields that to be updated are passed
+	body: JSON.stringify({
+	email: "hello@geeky.com",
+	first_name: "Geeky"
+	})
+})
+	.then(function (response) {
+
+	// console.log(response);
+	return response.json();
+	})
+	.then(function (data) {
+	console.log(data);
+	});
+};
+
+PatchRequest();
+```
+
+
+
+
+
+
+
+
+---
+
+# Interaction with backend and endpoint making
 
 ## Send JSON to backend
 ### in app.js 
@@ -473,30 +599,11 @@ heroku logs --tail
 
 
 
-## Post data sample
-// Example POST method implementation:
-async function postData(url = '', data = {}) {
-  // Default options are marked with *
-  const response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
 
-postData('https://example.com/answer', { answer: 42 })
-  .then(data => {
-    console.log(data); // JSON data parsed by `data.json()` call
-  });
+
+
+
+
 
 
 
