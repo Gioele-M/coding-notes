@@ -418,7 +418,30 @@ _Requirements_
 	+ app.use(cors())
 
 
+---
 
+# Deploy API with Heroku
+- Requires dependencies
+	+ cors
+	+ express
+
+## Standard script
+
+### In index.js
+```js
+const app = require('./app')
+// Declare port but don't override Heroku's one
+const port = process.env.PORT || 3000
+
+//Start server listener
+app.listen(port, ()=> console.log('Express departed from port ' + port))
+```
+
+### Need a Procfile for Heroku to determine how to behave (no ext)
+```
+web: npm start
+```
+Means if run from web run npm start. Npm start is just 'node index.js'
 
 
 
