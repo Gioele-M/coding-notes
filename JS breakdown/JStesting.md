@@ -70,7 +70,7 @@ describe('TestName', () => {
 
 
 ### Common matchers in *JEST* -> expect(fn).<matcher>()
-- .not.<matcher> -> inverts the operation 
+- .not.`<matcher>` -> inverts the operation 
 - toEqual -> recursively checks every field in an object or array
 - toBe -> tests *exact* equality
 - toBeNull / toBeUndefined / toBeDefined -> check if object is null/undefined/defined (!undefined)
@@ -181,7 +181,7 @@ describe('index.html', () => {
 # API testing
 # Testing
 
-- make __tests__ (underscores suggested in documentation) directory and name files <file>.spec.js or <file>.test.js (JEST REQUIREMENT) -> this case api.spec.js
+- make __tests__ (underscores suggested in documentation) directory and name files `<file>`.spec.js or `<file>`.test.js (JEST REQUIREMENT) -> this case api.spec.js
 - For testing HTTP we need accessory package called supertest
 	+ npm i -D supertest (can do with the rest above)
 
