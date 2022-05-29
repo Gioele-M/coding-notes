@@ -42,6 +42,10 @@ Stop
 		* `\q`
 
 
+
+
+# SQL
+
 ## SQL CLI commands
 
 - See help options
@@ -130,6 +134,27 @@ Stop
 `SELECT COUNT(id), location FROM owner GROUP BY location`
 
 
+## SQL constraints
+- NOT NULL
+	+ Enforces not accepting a null value
+
+- UNIQUE
+	+ Ensures all values in column are unique
+
+- PRIMARY KEY
+	+ Primary identifier of table, must be unique, not null and can be attributed to only 1 column
+
+- FOREIGN KEY
+	+ Used mainly to prevent actions that would destroy records in a table. (As called from other tables to reference rows)
+
+- CHECK
+	+ Limits the value range that can be placed in a column (or table)
+	+ ex `birth_date DATE CHECK (birth_date > '1900-01-01)`
+
+- DEFAULT
+	+ Set default value for a column
+
+
 
 
 ## SQL aggreagation functions
@@ -192,5 +217,65 @@ SELECT owners.name AS owner, cats.name AS cat
 FROM ((adoptions
 INNER JOIN owners ON adoptions.owner_id = owners.id)
 INNER JOIN cats ON adoptions.cat_id = cats.id);
-
 ```
+
+---
+
+### Examples queries
+
+ex. Get cat named 'Zelda'
+`SELECT * FROM cats WHERE name = 'Zelda';
+SELECT * FROM cats WHERE NAME ILIKE 'zelda' -> Same query but ILIKE makes it case insensitive`
+
+ex. Get name of cats by age
+`SELECT name FROM cats ORDER BY age;`
+
+ex. Complex/nested request, retrieve everything from the table respecting second condition
+`SELECT * FROM cats
+ WHERE age = (SELECT max(age) FROM cats)` 
+
+ex Combined nested request
+`SELECT * FROM cats
+ WHERE (age > 5) AND (name LIKE 'T%')` -> Like allows for giving regular expressions
+
+ex. Update value for specific tuple, works in wider contexts depending on WHERE
+`UPDATE cats 
+SET AGE = 4
+WHERE name = 'Zelda';`
+
+ex. Remove cat based on id -> !!! Put condition on it otherwise it deletes everything
+`DELETE FROM cats
+WHERE id=5`
+
+ex. Make table from csv
+`COPY cats
+FROM $str%/code/data/cats.csv$str$   -> $str$ are just string delimiters, can swop for ' '
+DELIMITER ',' CSV HEADER; 	-> header is for columns names`
+
+
+ex. Make fresh table, remove if exists first for good practice 
+`DROP TABLE IF EXISTS trainers;
+CREATE table trainers (
+	id serial primary key,
+	name varchar(50) not null,
+	cohort_id int references cohorts(id) not null,
+	senior boolean
+	);`
+
+ALTER TABLE trainers
+`ALTER COLUMN senior
+SET DEFAULT FALSE`  // NEED THIS AS BOOLEAN ARE NULL BY DEFAULT
+
+ex. Inner join example
+`select * from student as s
+ inner join cohorts _on_ cohorts.id = s.cohort_id
+ where ...` 
+
+
+---
+
+
+
+
+
+
