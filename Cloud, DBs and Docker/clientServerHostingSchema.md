@@ -5,22 +5,17 @@
 
 ### Server entrypoint
 The server root has the entry point to our code, this retrieves the requests from the front end and communicates back. 
-In here there is:
-- API declaration with express + cors
-- Imports router modules
-
-```js
-const app = require('express')()
-const cors = require('cors')
-const dogRoutes = require('./router/dogs')
-
-app.use(cors())
-
-app.use('/dogs', dogRoutes)
-
-module.exports = app
-```
-
+In here:
+- index.html
+- static/
+    + css/
+        * index.css(imports others)
+        * modal.css
+        * nav.css (for navbar)
+    + js/
+        * layout
+        * modal
+        * requests
 
 
 ### Router
