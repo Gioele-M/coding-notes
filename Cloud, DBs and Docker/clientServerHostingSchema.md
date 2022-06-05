@@ -18,6 +18,7 @@ In here:
         * requests
 
 
+
 ### Router
 Router stores all endpoints for each route. It includes:
 - Router declaration
@@ -85,5 +86,36 @@ module.exports = Dog;
 
 ```
 
+
+### index.js and server.js
+Finally index.js and server.js, index.js to declare port and start server, server.js to import routers and give them endpoints
+
+*index.js*
+```js
+const app = require('./server');
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Express now departing from port ${port}!`))
+
+```
+
+*server.js*
+```js
+const express = require('express');
+const cors = require('cors');
+
+const server = express();
+server.use(cors());
+server.use(express.json());
+
+const dogRoutes = require('./routes/dogs')
+server.use('/dogs', dogRoutes)
+
+server.get('/', (req, res) => res.send('Welcome!'))
+
+module.exports = server
+
+```
 
 ---
