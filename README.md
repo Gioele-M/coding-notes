@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Roboto&size=24&duration=4000&width=630&lines=Welcome+to+the+Coding+Notes+and+Cheatsheets+Repository!)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=roboto&size=24&duration=2000&center=true&vCenter=true&multiline=true&width=450&height=90&lines=Welcome+to+the+Coding+Notes;and+Cheatsheets+Repository!)](https://git.io/typing-svg)
 ==================================
 ## Contents
 ### Cheatsheets
