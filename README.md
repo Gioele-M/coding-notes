@@ -7,4 +7,11 @@
 - Nano
 - Vim
 ### JS Breakdown
+
 ### Cloud, DBs, Docker
+
+### React
+- Introduction
+- Import/Export
+- Learning Checklist
+- Setting Up React
