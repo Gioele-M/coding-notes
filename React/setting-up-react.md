@@ -1,8 +1,8 @@
 Setting up React
 ===============
 There are two methods:
-- [CRA](##-cra)
-- [Non-CRA](##-non-cra)
+- [CRA](#CRA)
+- [Non-CRA](#non-cra)
 
 ## CRA
 ```
@@ -50,5 +50,3 @@ It is not necessary to export this, or link it to the index.html as it will read
 - `<React.StrictMode>` this will enable [Strict Mode](https://reactjs.org/docs/strict-mode.html), helpful for debugging. It will display more error messages, and prevent us from doing some things like using reserved words etc...
 
 ### src/App.js
-
-<p align="right">(<a href="#top">back to top</a>)</p>
