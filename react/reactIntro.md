@@ -40,3 +40,69 @@
 	+ `npm run eject`
 	+ This cannot be reversed
 
+
+---
+
+### Use Bootstrap in React
+
+`npm install react-bootstrap bootstrap`
+
+*in the component js file*
+`import 'bootstrap/dist/css/bootstrap.min.css'`
+
+---
+
+### Import the css in component js file
+
+import './App.css'
+
+---
+
+## Mouse events
+
+`onMouseEnter - onMouseLeave`
+
+*Inside div to be targeted*
+
+```jsx
+
+
+function App(){
+
+
+	const changeBg = () =>{
+		console.log('do something')
+	}
+
+	return(
+
+		<div onMouseEnter={()=>{changeBg}> This div </div>
+	)
+}
+```
+
+
+---
+
+### Convention for calling function
+
+on Element Event
+
+ex. onInputClick - onDivMouseEnter
+
+*Or*
+
+handle Element Event
+
+---
+
+### Other convention
+
+If jsx property " double quotes " if not ' single quotes '
+
+---
+
+## Best id randomiser
+
+`npm i uuid`
+`import uuidv4 from 'uuid/v4'`
