@@ -30,7 +30,8 @@ Many more imports, have a look at the wiki, best if you start with CRA
 
 	"scripts":{
 		"test": "react-scripts test --setupFilesAfterEnv ./src/test/setupTests.js",
-		"start": "PORT=4000 react-scripts start" //this overrides behaviour and starts server in port 4000 instead of 3000
+		"start": "PORT=4000 react-scripts start", //this overrides behaviour and starts server in port 4000 instead of 3000
+		"coverage": "react-scripts test --setupFilesAfterEnv ./src/test/setupTests.js --coverage --watchAll=false"
 	},
 
 	"jest": {
@@ -56,8 +57,8 @@ Many more imports, have a look at the wiki, best if you start with CRA
 *setupTests.js*
 ```js
 import React from 'react'
-import {render} form '@testing-library/react'
-import userEvert from '@testing-library/user-event'
+import {render} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom/extend-expect';
  
 
