@@ -3,13 +3,10 @@ Authorisation: check that someone is allowed to be there
 Authentication: check that someone is who they say to be
 
 
-GDPR:
+*GDPR:*
 General data protection regulation:
 - Important hackers don't find a backdoor
 
-
-ICO
-Information commissioner office (?)
 
 
 ## Authorisation types
@@ -23,10 +20,7 @@ The main difference is session-based authentication of the connection stores the
 *Token -> client side*
 - Requires credential and sends token to client to access data
 
-******* Look at this again
 ----------
-
-
 
 ## Preparing passwords for storage
 
@@ -84,7 +78,7 @@ router.post('/login', async(req,res)=>{
 		}
 
 		//This compares and sees for itself to add the salt
-		const authed = bcrypt.compare(req.body.passwordm user.passwordDigest)
+		const authed = await bcrypt.compare(req.body.passwordm user.passwordDigest)
 
 		if(!!authed){ //!! is strict not
 			res.status(200).json({user: user.name})
@@ -104,6 +98,7 @@ router.post('/login', async(req,res)=>{
 
 
 ### Encoding components
+*Token components* 
 
 *Header* (metadata eg type of algorithm used and all that)
 
@@ -133,23 +128,25 @@ const dotenv = require('dotenv')
 
 //If the user authenticates we send a token
 //Login route for authentication of encripted passwords 
+//For this to work it *REQUIRES* an .env file with variable (requires npm i dotenv)
 router.post('/login', async(req,res)=>{
 	try{
 		const user = await User.findByEmail(req.body.email)
 		if(!user){
 			throw new Error('Not found')
 		}
-		const authed = bcrypt.compare(req.body.passwordm user.passwordDigest)
+		const authed = await bcrypt.compare(req.body.passwordm user.passwordDigest)
 
-		if(!!authed){ 
+		if(!!authed){ //?? opposite?
 			//////////////////////////////////// Changes compared to before
+			//////////////////////////////////// Maybe in here it requires the environment variable to be added
 			const payload = {username: user.name, email: user.email}
 			const sendToken = (err, token) => {
 				if(err){throw new Error('Error in token generation:' + err)}
 
 				res.status(200).json({
 					success: true,
-					token: "Bearer " + token
+					token: "Bearer" + token
 				})
 
 			}
@@ -165,11 +162,21 @@ router.post('/login', async(req,res)=>{
 })
 
 
+// IN INDEX.JS REQUIRE dotenv!!!!!
+const dotenv = require('dotenv')
+
+
+// .env file contains
+SECRET=process.env.SECRET
 
 
 
-//IN HTML REQUIRE JWT-DECODE LIBRARY WITH SCRIPT:SRC
-// Called in the getall route, we want to make sure that only authenticated users can access this!!
+
+//IN HTML REQUIRE JWT-DECODE LIBRARY WITH SCRIPT:SRC (?)
+<script src='jwt-decode-link etc get it from documentation'>
+
+
+// Jwt-decode is called in the getall route, we want to make sure that only authenticated users can access this!!
 // Client - JS - Static - Request.js in here its called in repo
 
 function login(data){
@@ -208,7 +215,7 @@ router.get('/', verifyToken, async(req,res)=>{
 
 ```
 
-*Middleware file*
+*In Middleware file found in api*
 _Just a authoriser that checks token_
 ```js
 const jwt = require('jsonwebtoken')
@@ -217,7 +224,7 @@ function verifyToken(req, res, next){
 	const header = req.headers['authorization']
 	if(header){
 		const token = header.split(' ')[1] //Second element bc bearer word before token
-		jwt.verify(token, process.envSECRET, async(err, data) =>{
+		jwt.verify(token, process.env.SECRET, async(err, data) =>{
 			if(err){
 				res.status(403).json({err: 'Invalid token'})
 			}else{

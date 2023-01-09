@@ -106,7 +106,7 @@ Structure is the same but for...in is for objects and for...of is for arrays
 	//do this looping through keys
 }
 //
-for(const element in array){
+for(const element of array){
 	//do this 
 }
 `
@@ -118,7 +118,7 @@ forEach is used on arrays to apply a callback function (can establish an arrow f
 
 ## map
 map is similar to forEach but it returns the values in a new array
-`newArray = array.forEach(element => element.toUppercase())`
+`newArray = array.map(element => element.toUppercase())`
 
 
 ## some

@@ -1,0 +1,225 @@
+In order to 
+
+
+bundler -> watchify
+-npm install -D watchify
+
+run script to run server and bundle everything together
+-npm i -D watchify
+
+run python server at same time
+python -m http.server
+
+
+concurrently -> makes you run two commands at the same time
+
+
+
+
+list of commands
+npm init -y 
+npm i -D watchify concurrenly
+
+inside package.json
+in scripts
+	after test add 
+	'dev': "concurrently \"watchify ./index.js -o bundle.js\" \"python -m http.server\""
+
+	---
+	"dev": "concurrently \"watchify ./index.js -o bundle.js\" \"python -m http.server\""
+	---
+
+
+Bundler now can check requirements
+
+NOW can do 
+npm run dev
+
+everything gets bundled in bundle.js
+add bundle.js in script tag in html
+
+
+best making a 'static' folder to work from
+
+---
+querySelector(xxx) -> only returns first instance
+xxx targets sections .classes #ids [tags]
+querySelectorAll -> returns all in array (can use array methods as forEach())
+getElementById #heading
+getElementsByClassName
+GetElementByTagName
+---
+
+
+
+
+
+npm -i -D jest
+npm -i -D jest-environment-jsdom -> required for web development
+
+
+
+Testing reactive functionality in jest requires two modules import
+
+#This is best done inside 'test' file in layout.spec.ks
+
+
+in file add:
+```
+/**
+* @jest-environment jsdom
+*/
+```
+const fs = require('fs') -> to interact w files
+const path = require('path') -> to determine where files are at
+
+#build html
+const html = fs.readFileSync(path.resolve(\_dirname, '..index.html'), 'utf8');  (one or two underscores before dirname no escape)
+
+
+
+
+		
+
+Start testing with 
+Check if header is corerct
+
+describe('index.html', () => {
+	// ADD some declaration before each test at top
+	beforeEach(() =>{
+	// example: insert here document declaration/extraction
+	#Extract html content
+	document.documentElement.innerHTML = html.toString()
+	})
+
+	describe('head', () => {
+		test('has title', () =>{
+			//extract title
+			const title = document.querySelector('title')
+			expect(title.textContent).toContain('whatever title')
+			})
+
+	})
+	describe('body', () ={
+		it('has heading', () =>{
+			let heading = document.querySelector('#heading')
+			expect(heading).toBeTruthy()
+			})
+		})
+})
+
+
+---
+
+
+# Modify element in html
+
+#Target element first
+const h1 = document.querySelector('#heading')
+#Change content
+h1.textContent = 'Hello'
+
+#This is not responsive so you could implement a button
+const btn = document.querySelector('button')
+#Needs an event listener!!
+
+element.addEventListener('event_description', function)
+
+btn.addEventListener('click', () =>{
+	h1.textContent = 'Changed text'
+})
+
+# Add element to list
+#target element
+const ul = document.querySelector('#ulclass')
+
+#create new element
+const newLi = document.createElement('li')
+#add text
+newLi.textContent = 'text'
+#add id
+newLi.id = 'whatever id'
+#add span to li element
+#create it first
+const span newSpan = document.createElemen('span')
+#Add class and other attributes
+newSpan.setAttribute(key, value) 'key' = 'value'
+newSpan.setAttribute('class', 'delete-it')
+#Set content for span
+newSpan.textContent = '...'
+
+#append to ul
+ul.append(newLi)
+
+
+
+
+
+# Target button which allows us to add elements
+btn.addEventListener('click', () => {
+	all the stuff to create element given before
+})
+
+
+# Remove elements from list
+
+#target class of interest
+
+const close = document.querySelectorAll('.delete-btn')
+#working with a list of elements
+
+#Could remove with
+close[x].remove() 
+#However more often than not you want to remove the parent element so you do 
+close[x].parentElement.remove()
+
+#Add event listener to all close buttons
+close.forEach((x) =>{ //x is the iterable element
+	x.addEventListener('click', () => {
+		#declare element you want to remove
+		const li = x.targe.parentElement
+		#remove it
+		li.remove()
+		})
+})
+
+
+
+#Add event to happen when just added is clicked
+newLi.onclick = (e) =>{
+	const li = e.target.parentElement
+	li.remove()
+}
+
+
+
+# When adding elements and giving them ids, we want to give an increasing number for each element ex item-1, item-2....
+
+#Get all lis
+const lis = document.querySelectorAll('li')
+#get last id
+const lastID = lis[lis.length -1].id 
+-> item-3
+#Slice number from string + cast in number (slice-1 takes last char)
+const lastNumber = parseInt(lastID.slice(-1))
+#Now declare next id
+const nextNumber = lastNumber + 1
+
+#Now you can add element properly
+const newLi = document.createElement('li')
+#add class parsing nextNumber as id index
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

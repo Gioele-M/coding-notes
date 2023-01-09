@@ -1,0 +1,980 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fmodern\fcharset0 Courier-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fnil\fcharset0 Menlo-Bold;\f4\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid1\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid101\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww21000\viewh16780\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 Python - Financial Statistics\
+\
+
+\f1\b\fs32 Rate of return
+\f0\b0\fs28  - Measure the amount of money gained or lost in an investment\
+\
+
+\f1\b\fs32 Simple rate of return
+\f0\b0\fs28  - Measure of gain in a project \'97 It is expressed as a percentage of the originally invested amount. \
+\
+
+\f1\b R = (E - S + D) / S
+\f0\b0 \
+\
+R: simple rate of return\
+S: starting price of investment\
+E: ending price of investment\
+D: dividend\
+\
+
+\f1\b\fs32 Logarithmic rate of return 
+\f0\b0\fs28 - AKA continuously compounded return. This is the expected return for an investment where the earnings are assumed to be continually reinvested over the time period. It is calculated by taking the difference between the log of the ending price and the log of the starting price.\
+\
+
+\f1\b r = log(E/S)\
+
+\f0\b0 \
+r: logarithmic rate of return\
+S: starting price of investment\
+E: ending price of investment\
+\
+
+\f1\b\fs32 Differences
+\fs28  : 
+\f0\b0 \
+The advantage of the log rate of return is that it is easy to make calculations about a single asset over time. On the other hand, calculating the simple rate of return is easier for dealing with multiple assets over the same time period.\
+\
+\
+\
+
+\f1\b\fs32 Annualising
+\fs28 : 
+\f0\b0 Standardising the rate of return to a yearly return so not to confuse different metrics. It requires 
+\f1\b AGGREGATING across time
+\f0\b0 . \
+\'97To convert a log rate of return from one time period to another, we can multiple the rate of return by the number of original time periods there are in the new time period. !! 252 trading days in 1 year !! 5 days in a week\
+\
+
+\f1\b r = r0*t
+\f0\b0 \
+r: converted log rate of return\
+r0: original log rate of return\
+t: the number of original time periods in the new time period\
+IF there are MULTIPLE RATE OF RETURNS, do an average and apply the formula\
+IF we have ALL THE RATE OF RETURNS for the whole year, T gets removed and r = r01+r02+r0n\
+\
+\
+
+\f1\b\fs32 Aggregate across assets:
+\fs28  
+\f0\b0 The portfolio return is the weighted average of each individual asset\'92s simple rate of return. \
+\
+
+\f1\b\fs32 Calculate weight\
+
+\fs28 Wi = Si/(S1 + S2 + \'85 Sn)\
+
+\f0\b0 Wi: weight of the ith investment in the portfolio\
+Si: starting price of the ith investment in the portfolio\
+
+\f2 \uc0\u963 
+\f0 \
+
+\f1\b\fs32 Calculate assets aggregation:
+\f0\b0 \
+
+\f1\b\fs28 R = (W1*R1) + (W2*R2) + \'85 (Wn*Rn)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f0\b0 \cf0 R: portfolio simple rate of return\
+Wi: weight of the ith investment in the portfolio\
+Ri: simple rate of return of the ith investment in the portfolio\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+
+\f1\b\fs32 Variance
+\f0\b0\fs28  is a measure of the spread of a dataset, or how far apart each value is from the mean. The greater the variance, the more spread out or variable the data is.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f3\b \cf0 \uc0\u963 
+\f1 ^2 = ( 
+\f3 \uc0\u931 
+\f1 (Xi - \uc0\u88 \u772 )^2 ) / n\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0
+\f2\b0 \cf0 \uc0\u963 
+\f0 ^2: variance\
+Xi: the ith value in the dataset\
+\uc0\u88 \u772 : the mean of the dataset\
+n: the number of values in the dataset\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+
+\f1\b\fs32 Standard deviation
+\f0\b0\fs28  is a measure of the spread of the dataset. It is the square root of the variance. This has the same unit as the original dataset (instead of being squared)\
+\
+\
+
+\f1\b\fs32 Correlation
+\f0\b0\fs28  is a measure of how closely two datasets are associated with each other. (-1 < x < 1)\
+\
+
+\f1\b PEARSON CORRELATION COEFFICIENT:
+\f0\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 {{\NeXTGraphic Screenshot 2022-02-21 at 13.11.18.png \width8160 \height1180 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+rxy: correlation coefficient\
+Xi: the ith value in dataset X\
+Yi: the ith value in dataset Y\
+n: the number of values in the dataset\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs74 \cf0 NUMPY
+\f0\b0\fs28 \
+list -> array\
+\
+import numpy as np\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 Arrays
+\f0\b0 \
+np.array([x, y ,z]) \
+\
+
+\f1\b Array from imported csv
+\f0\b0 \
+a = np.genfromtxt(\'91file.csv\'92, delimiter = \'91,\'92)\
+\
+
+\f1\b Operations apply to all the array
+\f0\b0 \
+a = np.array(list)\
+a_plus_3 = a + 3\
+\
+
+\f1\b Can add/subtract arrays, the operations will be performed on the same index element\
+\
+2D arrays element selection
+\f0\b0 \
+a[rown, columnn]\
+\
+entire selection -> : as index ex:\
+select first column\
+a[:,0]\
+Select second row\
+a[1,:]
+\f1\b \
+
+\f0\b0 \
+
+\f1\b Select elements from array logically
+\f0\b0 \
+a[(a>5)|(a<2)]\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs74 \cf0 Pandas
+\f0\b0\fs28 \
+Main object = DataFrame <- (dict)\
+\
+df = pd.DataFrame(dict)\
+\
+df = pd.DataFrame([[],[]],columns = [])\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 Loading CSV
+\f0\b0 \
+df = pd.read_csv(\'91csv.csv\'92)\
+
+\f1\b Write CSV
+\f0\b0 \
+df.to_csv(\'91csv_file_name.csv\'92)\
+\
+df.head(x) -> display first x lines (default 5)\
+\
+
+\f1\b Select column
+\f0\b0 \
+df[\'91value\'92]\
+(if it doesn\'92t have spaces or starting w numbers)\
+df.value\
+OBTAIN -> series\
+\
+
+\f1\b Select multiple columns\
+
+\f0\b0 new_df = df[[\'91col1\'92, \'91col2\'92]]\
+\
+\
+
+\f1\b Select row
+\f0\b0 \
+row = df.iloc[x] -> where x is index\
+\
+
+\f1\b Select multiple rows
+\f0\b0 \
+rows = df.iloc[start:end] -> where end not included\
+\
+
+\f1\b Select rows logically
+\f0\b0 \
+specific_rows = df[df.columnx == required_value]\
+specific_rows = df[(condition1) &/| (condition2)]\
+\
+
+\f1\b ISIN
+\f0\b0 \
+specific_rows = df[df.column.isin([val1, val2, val3])\
+\
+\
+
+\f1\b Reset indexes
+\f0\b0 \
+df.reset_index(inplace=True) -> applied directly to df\
+df = df.reset_index(drop=True) -> drops old indexes\
+\
+
+\f1\b Add column
+\f0\b0 \
+df[\'91new_column_name\'92] = [list of values long as df]\
+Can also = one value, that is used for all columns\
+\
+\
+
+\f1\b Apply function to whole column 
+\f0\b0 \
+ex: make all strings uppercase\
+df[\'91name\'92] = df.name.apply(str.upper)\
+\
+\
+To 
+\f1\b access
+\f0\b0  particular 
+\f1\b values of the row
+\f0\b0 , we use the syntax row.column_name or row[\'91column_name\'92].\
+\
+
+\f1\b Apply function to rows
+\f0\b0 \
+df.apply(function, axis=1)\
+ex\
+df[\'91new_column\'92] = df.apply(function, axis=1)\
+\
+\
+
+\f1\b Change column names
+\f0\b0 \
+df.columns = [list of new names]\
+\
+
+\f1\b Change single column names 
+\f0\b0 -> pass a dictionary + inplace\
+inplace = True is to modify the current df\
+\
+df.rename(columns=\{\'91a\'92:\'92b\'92, \'91c\'92:\'92d\'92\}, inplace=True)\
+\
+\
+
+\f1\b USE LAMBDA TO INSERT LOGICAL COLUMN\
+
+\f0\b0 df[\'91new_column\'92] = df.row_to_apply_logic.apply(lambda x : xxx)\
+\
+
+\f1\b USE LAMBDA TO INSERT LOGICAL ROW
+\f0\b0 \
+df[\'91new_column\'92] = df.apply(lambda row: \'85\'85\'85\'85, axis=1)\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs38 \cf0 Aggregates in pandas\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs28 \cf0 General -> df.column_name.command()
+\f0\b0 \
+(eex mean median and sd)\
+\
+.median() -> median\
+.nunique() -> number of unique elements\
+.mean()\
+.std()\
+.max() -> max value in column\
+.min() -> min\
+.count() -> n of values in column\
+.unique() -> list of unique values\
+\
+.groupby(\'91x\'92) -> groups by defined column before executing command, can be more than one if a list []\
+	df.groupby('column1').column2.measurement()\
+	df.groupby(\'91student\'92).grade.mean()\
+												+++.reset_index()\
+\
+percentile/complex lambda operations\
+percentile = df.groupby(\'91category\'92).wage.apply(lambda x: np.percentile(x,75)).reset_index()\
+\
+\
+
+\f1\b Pivot table
+\f0\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 df.pivot(columns='ColumnToPivot\'92(new column names), index='ColumnToBeRows\'92(new index column),values='ColumnToBeValues\'92(actual values)).reset_index()\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs50 \cf0 Import data
+\f0\b0\fs28 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 \
+Import csv 
+\f0\b0 \
+file = pd.read_csv(\'91data.csv\'92)\
+\
+
+\f1\b Import using Datareader
+\f0\b0 \
+\
+-Import symbols\
+\pard\pardeftab720\partightenfactor0
+\cf0 from pandas_datareader.nasdaq_trader import get_nasdaq_symbols()\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 symbols = get_nasdaq_symbols()\
+-Import dates -> requires specific format\
+from datetime import datetime\
+start_date = datetime(year, month, day)\
+\
+-Access data\
+\pard\pardeftab720\partightenfactor0
+\cf0 import pandas_datareader.data as web\
+\
+web.
+\f1\b DataReader
+\f0\b0 (\'91MORTGAGE30US\'92, \'91fred\'92, start_date, end_date)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+'MORTGAGE30US' - An identifier provided by the API specifying the data we want back (ex. 30 year mortgage data in the US)\
+'fred' - The name of the API we want to access\
+start_date, end_date - The date range we want the data to be from\
+\
+\
+
+\f1\b API KEYS
+\f0\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 An API key is a unique string used to identify and authenticate entities requesting data. Some APIs require it when submitting requests\
+Some might require entering the key in os\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 os.environ["QUANDL_API_KEY"] = "demo"\
+\
+\
+
+\f1\b\fs32 Shift table
+\f0\b0\fs28 \
+# shifts all rows down by 1\
+dataframe.shift(1); \
+# shifts all rows in name column up 5\
+dataframe['name'].shift(-5); \
+# shifts all rows in the price column down 3\
+dataframe['price'].shift(3); \
+USEFUL for shifting table and performing subtraction and additions\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs46 \cf0 Calculate variance and covariance
+\f0\b0\fs28 \
+\
+df[\'91column_of_interest].var() -> calculates variance\
+Variance measures how far a set of numbers are spread out from their average\
+\
+df.cov() -> calculated covariance of DF\
+\pard\pardeftab720\partightenfactor0
+\cf0 Covariance, in a financial context, describes the relationship between the returns on two different investments over a period of time, and can be used to help balance a portfolio.\
+Calling cov() on our stocks/bonds produces a matrix which defines the covariance values between each column pair in the DataFrame.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs48 \cf0 Matplotlib
+\f0\b0\fs28 \
+from matplotlib import pyplot as plt\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 \
+Make a simple plot
+\f0\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 x_values = [0, 1, 2, 3, 4]\
+y_values = [0, 1, 4, 9, 16]\
+plt.plot(x_values, y_values)\
+plt.show()\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf0 Plot two lines on the same graph -> call plot twice before showing with the two sets of values 
+\f0\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+
+\f1\b Aesthetic extras for plt.plot()
+\f0\b0 \
+color = \'91x\'92\
+linestyle = \'91--' / \'91:\'92 -> make line dotted etc\
+marker = \'91*\'92 -> put marker on dot\
+\
+
+\f1\b Center axis in defined area
+\f0\b0 \
+plt.axis([minX, maxX, minY, maxY])\
+plt.axis([1, 4, 2, 6])\
+\
+
+\f1\b Labels
+\f0\b0 \
+plt.xlabel(\'91x\'92)\
+plt.ylabel(\'91y\'92)\
+plt.title(\'91title\'92)\
+\
+\
+
+\f1\b Subplots
+\f0\b0 \
+stack multiple plots in the same figure\
+\
+plt.subplot(n_rows, n_columns, index_subplot)\
+\
+ex.\
+\pard\pardeftab720\partightenfactor0
+\cf0 # First Subplot\
+plt.subplot(1, 2, 1)\
+plt.plot(x, y, color='green')\
+plt.title('First Subplot')\
+ \
+# Second Subplot\
+plt.subplot(1, 2, 2)\
+plt.plot(x, y, color='steelblue')\
+plt.title('Second Subplot')\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+
+\f1\b Adjust subplots
+\f0\b0 \
+plt.subplots_adjust() -> before plt.show\
+\
+Arguments:\
+-left \'97 the left-side margin, with a default of 0.125. You can increase this number to make room for a y-axis label\
+-right \'97 the right-side margin, with a default of 0.9. You can increase this to make more room for the figure, or decrease it to make room for a legend\
+-bottom \'97 the bottom margin, with a default of 0.1. You can increase this to make room for tick mark labels or an x-axis label\
+-top \'97 the top margin, with a default of 0.9\
+-wspace \'97 the horizontal space between adjacent subplots, with a default of 0.2\
+-hspace \'97 the vertical space between adjacent subplots, with a \
+default of 0.2\
+\
+\
+
+\f1\b Put legend on
+\f0\b0 \
+plt.legend([\'91first_graph_legend\'92,\'92second\'92,\'92third\'92], loc=x(def=0))\
+loc determines the position:\
+0	best\
+1	upper right\
+2	upper left\
+3	lower left\
+4	lower right\
+5	right\
+6	center left\
+7	center right\
+8	lower center\
+9	upper center\
+10	center\
+\
+Can add argument label=\'91\'92 when plt.plot() but needs plt.legend() regardless\
+\
+YOU CAN MODIFY TICKS and their label, very unnecessary and complicated\
+ax = plt.subplot() -> create axes object\
+ax.set_xticks([x for x in range(9)]) -> set x-ticks marks\
+ax.set_xticklabels([\'91x\'92,\'92y\'92,\'92z\'92\'85]) -> set x-ticks labels\
+		can add rotation=x\
+\
+\
+\
+
+\f1\b Clear all plots
+\f0\b0 \
+plt.close(\'91all\'92)\
+\
+
+\f1\b Save as image
+\f0\b0 \
+plt.figure(figsize=(width_inch, height_inch)\
+ex\
+plt.figure(figsize=(4, 10)) \
+plt.plot(x, parabola)\
+plt.savefig('tall_and_narrow.png')\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs62 \cf0 DIFFERENT PLOT TYPES
+\f0\b0\fs28 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 LINE PLOT
+\f0\b0 \
+\'95 plt.plot() -> simple plot with dots and lines\
+\
+
+\f1\b BAR CHART
+\f0\b0 \
+\'95\'a0plt.bar(x[], y[]) -> Bar chart\
+\
+- To set x-axis labels we do as before\
+ax = plt.subplot()\
+ax.set_xticks(range(8))\
+ax.set_xticklabels([\'91name\'92, \'91name2\'92, \'91name3\'92], rotation=xx)\
+	- ROTATION is useful if names are too long\
+\
+\
+-
+\f1\b  Side by side bars
+\f0\b0 \
+In order to plot two bars next to each other we need to modify the width of the bars\
+and instruct the plot object on how to rearrange them, this is the formula used:\
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 n = 1  # This is our first dataset (out of 2)\
+t = 2 # Number of datasets\
+d = 7 # Number of sets of bars\
+w = 0.8 # Width of each bar\
+x_values1 = [t*element + w*n for element in range(d)]\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+For the second set of data you just need to change the n, the list comprehension values can be fed directly\
+\
+You need to plot two bar charts that will overlap to create the desired graph\
+\
+\
+
+\f1\b \'96 Stacked bars plot
+\f0\b0 \
+In order to do this we have to overlap two graphs, the first set of data can be just added to the graph,\
+the second has to be fed using the \'91bottom\'92 keyword that makes the second set of bars \'91sit\'92 on top of the first\
+\
+#First set\
+plt.bar(range(len(video_game_hours)), video_game_hours)\
+\
+#Second set\
+plt.bar(range(len(book_hours)), book_hours, 
+\f1\b bottom=video_game_hours
+\f0\b0 )\
+\
+\
+\
+
+\f1\b ERROR BARS!\
+
+\f0\b0 In order to add error bars you can just add the \'91yerr\'92 keyword\
+- It can be a single value or a list of values depending on the need!\
+\
+You also want \'91capsize\'92 for better readability\
+\
+ex.\
+plt.bar(range(len(values)), values, yerr=2, capsize=10)
+\f1\b \
+
+\f0\b0 \
+\
+FOR LINE GRAPHS ERROR BARS\
+This can be achieved using \'91fill_between()\'92, which creates a spectrum around the line, indicating the possibility\
+of error. (this has to be called on its own)\
+\
+Takes 3 arguments\
+- x-values\
+- lower bound for y-values\
+- upper bound for y-values\
++ alpha (for transparency)\
+\
+plt.fill_between(x_values, y_lower, y_upper, alpha=0.2)\
+plt.plot(x_values, y_values)\
+\
+\
+\
+\
+
+\f1\b PIE CHART\
+
+\f0\b0 plt.pie([]) set of values required\
+\
+This however returns a tilted piechart, therefore you need \
+plt.axis(\'91equal\'92)\
+\
+!To add labels you can either\
+-Make a legend:\
+plt.pie(budget_data)\
+plt.legend(budget_categories)\
+\
+-Plot as labels\
+plt.pie(budget_data, labels=budget_categories)\
+\
+\
+!To add the percentage occupied we use \'91autopct\'92, however this requires instructions on what to display\
+ex.\
+%0.2f -> 2 decimal places\
+%0.2f%% -> 2 decimal places but with % at the end (need 2)\
+%d%% -> rounded to the nearest int and with % at the end\
+\
+example:\
+plt.pie( budget_data, labels=budget_categories, autopct=\'91%0.1f%%\'92)\
+\
+\
+\
+
+\f1\b HISTOGRAM
+\f0\b0 \
+It creates 10 equally spaced bins (bars)\
+
+\f1\b \
+plt.hist(data)
+\f0\b0 \
++ bins = x decide the number of bins\
++ range = (x, y) (tuple) decide the range of values displayed\
+\
+\
+!Multiple histograms\
+\
+!We can do a better work with the keyword \'91alpha\'92 that sets transparency in order to see bot data sets.\
+\
+!We can also add the parameter \'91histtype\'92=\'91step\'92 to draw the outline of the histogram.\
+\
+!In case the two datasets are disproportionate we can do \'91normed\'92=True to normalise the data\
+\
+\
+\
+\
+............\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs60 \cf0 Mean-Variance portfolio optimisation\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f0\b0\fs28 \cf0 Typically, when we download stock data, the information is formatted as asset values at the end of a period (daily, monthly, quarterly). When we calculate the efficient frontiers, we need to structure the data as the percent returned over each period. The percent return is the y-axis of a mean-variance.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+
+\f1\b Calculate percent return of an asset:\
+
+\f0\b0 Usually assets are given in tabular format with 3 months value assessments.\
+To calculate the percentage return per instance you can use 
+\f1\b pct_change()\
+
+\f0\b0 \
+selected = list(my_data.columns[1:])\
+my_data[selected].pct_change()\
+\
+\
+
+\f1\b Calculate expected return of an asset
+\f0\b0 \
+To calculate total returns so far just add \
+.mean()\
+\
+\
+\
+
+\f1\b Weight of an asset
+\f0\b0  \
+Is the fraction of money invested in the asset, divided by the total amount of money in the portfolio\
+\
+Weight = Cost/Total\
+\
+\
+
+\f1\b Estimate return of a portfolio with multiple assets
+\f0\b0 \
+Just do a weighted mean eg\
+\
+weight1 * return1 + weight2 * return2 + ...\
+\
+\
+\
+
+\f1\b\fs32 CALCULATE Variance of an asset
+\f0\b0\fs28 \
+Variance can be used as a measure of risk\
+In addition we calculate the covariance between this asset and the other ones. \
+If two assets have a positive covariance, then they respond similarly t market forces. (the opposite is true)\
+Covariance can be positive-negative-uncorrelated\
+\
+To make these calculations we use a covariance matrix\
+[o1  o12 o13]\
+[o12 o2  o23]\
+[o13 o23  o3] \
+\
+The matrix is symmetrical with the variance of each asset on the diagonal!\
+\
+To calculate this we can use the pandas 
+\f1\b .cov()
+\f0\b0  function on the tabular data!\
+\
+***\
+selected=list(stock_data.columns[1:])\
+returns_quarterly = stock_data[selected].pct_change()\
+expected_returns = returns_quarterly.mean()\
+returns_cov = returns_quarterly.cov()\
+***\
+\
+PLOT PORTFOLIOS\
+\
+random_portfolios.plot.scatter(x='Volatility', y='Returns')\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+.............\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs60 \cf0 Linear regression
+\f0\b0\fs28 \
+\
+y = xm + b\
+\
+We can determine wether the intercept speculated is approaching or separating from the correct gradient. The formula is \
+\
+GRADIENT DESCENT OF M\
+
+\f4\fs24 {{\NeXTGraphic Screenshot 2022-02-26 at 15.36.42.png \width4540 \height1420 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \
+N is the number of points we have in our dataset\
+m is the current gradient guess\
+b is the current intercept guess\
+\
+In practice we find the sum of y_value - (m*x_value + b) for all the y_values and x_values we have. Then we multiply the sum by a factor of -2/N. N is the number of points we have.\
+\
+(Pretty much we check for the difference between the speculated and the actual Y points and we multiply by -2/N)\
+\
+\
+FOR THE X VALUE GRADIENT DESCENT YOU NEED THE SAME FORMULA TIMEX Xi\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f4\fs24 \cf0 {{\NeXTGraphic Screenshot 2022-02-26 at 16.28.28.png \width5180 \height1500 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \
+BASICALLY \
+we find the sum of x_value * (y_value - (m*x_value + b)) for all the y_values and x_values we have. Then we multiply the sum by a factor of -2/N. N is the number of points we have.\
+\
+ONCE THE M AND X GRADIENTS ARE AT THEIR MINIMUM THEN THE REGRESSION HAS THE BEST FIT\
+\
+\
+Now that the formulas are set, we need to understand how to move the gradient in the right direction. You start with a learning rate\
+Ex. find new b value\
+\
+new_b = current_b - (learning_rate * b_gradient)\
+where:\
+current_b: is the guess of the b value\
+b_gradient: gradient at our current guess\
+learning_rate: determining the size of step you want to increase -> too low will take too long and too high might skip best fit\
+\
+SAME FORMULA APPLIES TO THE M VALUE\
+\
+ONCE THESE VALUES ARE RE-CALCULATED THEY NEED TO CONVERGE\
+\
+\
+ALL THESE STUFF IS CONTAINED IN THE KIT 
+\f1\b SCIKIT-LEARN eg sklearn
+\f0\b0 \
+from sklearn.linear_model import LinearRegression\
+line_fitter = LinearRegression()\
+line_fitter.fit(X,y)\
+\
+this determines \
+line_fitter.coef_ -> which contains the slope\
+line_fitter.intercept_ -> which contains the intercept\
+\
+Can also predict y values based on X once model is fitted \
+\
+y_predicted = line_fitter.predict(X)\
+\
+\
+SUM UP:\
+-We can measure how well a line fits by measuring loss.\
+-The goal of linear regression is to minimize loss.\
+-To find the line of best fit, we try to find the b value (intercept) and the m value (slope) that minimize loss.\
+-Convergence refers to when the parameters stop changing with each iteration.\
+-Learning rate refers to how much the parameters are changed on each iteration.\
+-We can use Scikit-learn\'92s LinearRegression() model to perform linear regression on a set of points\
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs70 \cf0 Linear interpolation
+\f0\b0\fs28 \
+not good fit for seasonal data as it fluctuates a lot\
+\
+using NumPy \
+x=[missing_value_x]\
+xp=[known_x_values]\
+yp =[known_y_values]\
+y = np.interp(x,xp,yp)\
+\
+\
+Using SCIPY\
+from scipy.interpolate import interp1d\
+x = [known x values]\
+y = [known y values]\
+\
+x_value_for_which_y_is_missing = x\
+#find the interpolation line\
+interp_line = interp1d(x,y)\
+y_value = interp_line(x_value)\
+\
+\
+\
+\
+\
+
+\f1\b\fs68 Multiple imputations
+\f0\b0\fs28 \
+\pard\pardeftab720\partightenfactor0
+\cf0 Multiple imputation is a technique for filling in missing data, in which we replace the missing data multiple times. Multiple imputation, in particular, is used when we have missing data across multiple categorical columns in our dataset. After we have tried different values, we use an algorithm to pick the best values to replace our missing data. By doing this, we are able to, over time, find the correct value for our missing data.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+
+\f1\b EXAMPLE
+\f0\b0  OF ITERATIVEIMPUTER OF SKYLEARN (+PANDAS)\
+**************************\
+import numpy as np\
+from sklearn.experimental import enable_iterative_imputer\
+from sklearn.impute import IterativeImputer\
+import pandas as pd\
+ \
+# Create the dataset as a Python dictionary\
+d = \{\
+    'X': [5.4,13.8,14.7,17.6,np.nan,1.1,12.9,3.4,np.nan,10.2],\
+    'Y': [18,27.4,np.nan,18.3,49.6,48.9,np.nan,13.6,16.1,42.7],\
+    'Z': [7.6,4.6,4.2,np.nan,4.7,8.5,3.5,np.nan,1.8,4.7]\
+\}\
+ \
+dTest = \{\
+    'X': [13.1, 10.8, np.nan, 9.7, 11.2],\
+    'Y': [18.3, np.nan, 14.1, 19.8, 17.5],\
+    'Z': [4.2, 3.1, 5.7,np.nan, 9.6]\
+\}\
+ \
+# Create the pandas DataFrame from our dictionary\
+df = pd.DataFrame(data=d)\
+dfTest = pd.DataFrame(data=dTest)\
+ \
+# Create the IterativeImputer model to predict missing values\
+imp = IterativeImputer(max_iter=10, random_state=0)\
+ \
+# Fit the model to the test dataset\
+imp.fit(dfTest)\
+ \
+# Transform the model on the entire dataset\
+dfComplete = pd.DataFrame(np.round(imp.transform(df),1), columns=['X','Y','Z'])\
+ \
+print(dfComplete.head(10))\
+************************\
+\
+\
+np.nan!! \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b\fs52 \cf0 Lambda
+\f0\b0\fs28 \
+Defines a function in a single line\
+ex -> define function that returns x*2\
+mylambda = lambda x: (x*2)\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\b \cf0 IF ELSE lambda 
+\f0\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 lambda x: [OUTCOME IF TRUE] if [CONDITIONAL] else [OUTCOME IF FALSE]\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+myfunction = lambda x: x*1.5 if x < 30 else x*0.5\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f4 \cf0 # Sum of the product of each respective element in each dataset \
+sum_xy = 0\
+for i in range(len(set_x)):\
+  sum_xy += set_x[i] * set_y[i]\
+\
+for x,y in zip(set_x, set_y):\
+  sum_xy += x * y\
+\
+sum_xy = sum([x*y for x,y in zip(set_x,set_y)])}

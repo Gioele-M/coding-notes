@@ -1,0 +1,253 @@
+
+
+Form types
+<form>
+	<input type='text | checkbox | number | color | submit'> (submit requires value='text to show')
+<\form>
+	-type='':
+		text
+		checkbox
+		number
+		color
+		submit -> requires value='text to show'
+		textarea -> requires rows=x columns=x 
+		password -> is a text that hides characters
+
+	-placeholder="" => placeholder for text inside box
+
+	-required => keyword, requires field to be full before submission	
+
+	-value="" => value in the box
+
+	-name="" => VERY IMPORTANT TO PASS INFORMATION TO BACKEND
+
+
+IN FORM
+Add linking to other page once submitted
+<form action="otherpage.html">
+
+To stay on the same page(?)
+
+NEED A LABEL FOR INPUT with for="input-id"
+<label for="input1">.... id="input1"<\label>
+
+
+-------------------
+
+Prepare project and test folders
+.
+-index.html
+
+-static/
+	-image/
+		-favicon.png
+	-js/
+		-index.js
+		-other.js
+	-css/
+		-style.css
+	
+-test/
+	-layout.spec.js
+
+-coverage/
+
+
+
+--------------------
+Start running server (concurrently for watchify and http-server)
+
+npm init -y
+npm i -D concurrently watchify http-server jest jest-environment-jsdom
+
+--------
+in jest .json 'scripts'
+
+"test": "jest --watchAll"
+"coverage": "jest --coverage"
+"dev": "concurrently\"watchify .static/js/index.js -o bundle.js\" \"http-server\""
+
+!!!! http-server was trippin so python -m http.server
+
+----------
+
+Adding script in .html either
+-Top with defer 
+-Bottom of body
+
+------------
+
+You should always have a favicon! Inside head link:favicon => set path
+
+---------
+
+Inside layout.spec.js
+
+/**
+* @jest-environment jsdom
+*/
+
+const fs = require('fs');
+const path = require('path');
+const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf-8')
+
+
+describe('index.html', () =>{
+	beforeEach(() =>{
+	document.documentElement.innerHTML = html.toString();
+	})
+
+	describe('form', () =>{
+		let form;
+		let textInput;
+
+		beforeEach(() =>{
+			form = document.querySelector('form')
+			textInput = form.querySelector('[type="text"]')
+			submitBtn = form.querySelector('[type="submit"]')
+		})
+
+		//Tests...
+
+		describe('Tests description', () =>{
+			test('it exists', () =>{
+				expect(form).toBeTruthy()
+			})
+			test('Check for id/attributes')
+				expect(textInput.(id | getAttribute())).toBe('xxx')
+
+		//couldnt copy the rest
+	})
+})
+
+
+-------------------
+
+In index.js target form
+
+// get form
+const form = document.querySelector('form')
+const input = document.querySelector('#input-class')
+
+
+
+// check for submisison
+form.adEventListener('submit', (e) =>{
+	//default behaviour of submit is to refresh page so we stop that
+
+	e.preventDefault()
+
+	//Example action: change h3 content
+	h3.textContent = input.value
+
+	//clear input field
+	input.value = ''
+
+})
+
+
+
+--------------------
+
+CSS script standard helpful
+
+html{
+	box-sizing:border-box;
+}
+
+*, *::before, ::after{
+	padding:0;
+	margin:0;
+	box-sizing: inherit;
+}
+
+.container{
+	margin: 0 auto;
+	max-width: 600px;
+}
+
+
+
+
+
+--------------------------
+
+Use / Fetch API
+API = application programming interface (?)
+
+Used to recieve and send data - Usually in json format
+json-formatter extension on google chrome makes it look nicer
+
+ex. of API address
+api.github.com/users/username
+Gives data about the user
+
+
+IN WEB BROWSER
+fetch('api address') //this opens a promise
+
+
+IN JS FILE (continues the one before for variable declaration *see above)
+//Fetch will return a promise, .then keyword makes you add actions to perform on it
+fetch('api address')
+	.then(response => response.json())
+	.then(data => {
+		console.log(data)
+	})
+
+
+
+//Exercise: get github username's n of friends
+
+fetch(`api.github.com/users/${input.value}`)
+	.then(response => response.json())
+	.then(data => {
+		//This creates the variable data which is similar to a json object
+		console.log(data)
+		//get number of public repos
+		//data has attributes 
+		console.log(data.public_repos)
+		//set n of repos as h3
+		h3.textContent = data.public_repos + ' public repos'
+	})
+
+	// !!!!!!!!!! CATCH ERRORS
+	// This does only work when the network is down (?)
+	.catch(err =>{
+		console.log(err)
+	})
+
+
+FETCH DOESN'T CATCH ERRORS WHICH AREN'T OF NETWORK
+USE ASYNC INSTEAD, does the same of above but shows error message after catching an error
+
+async function getGitHubUserInfo(username){
+	try{
+		const url = 'api.github.com/users/' + username
+		const response = await fetch(url)
+		const data = await response.json()
+		h3.textContent = data.public_repos + " public repositories"
+	}catch(err){
+		console.log(err)
+		//create element
+		const error = document.createElement('div')
+		error.textContent = 'Oh no! ' + err
+		error.className = 'error'
+		error.onclick = closeError
+		document.querySelector('header').appendChild(error)
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
