@@ -1,5 +1,16 @@
 # Python intermediate
 
+## Example API call with requests
+```py
+import requests
+
+def fetch_stuff():
+   req = requests.get('https://api.github.com/users/getfutureproof')
+   data = req.json()
+   print(data['email'])
+```
+
+
 
 ## Mutable default arguments
 
