@@ -2,13 +2,9 @@
 ====================================================================
 
 ## Contents
+Have a look around!! I'll make a proper readme at some point 
 
 ### Cheatsheets
-
-- Emacs
-- Emmet
-- Nano
-- Vim
 
 ### JS Breakdown
 
@@ -16,8 +12,4 @@
 
 ### React
 
-- Introduction
-- Import/Export
-- Learning Checklist
-- Setting Up React
-- minor change
+### Python
